@@ -1,0 +1,41 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane
+    version: v2.3.4
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: crossplane
+        version: v2.3.4
+        type: helmChart
+        access:
+          type: helm
+          # renovate: datasource=helm depName=crossplane registryUrl=https://charts.crossplane.io/stable
+          helmChart: crossplane:2.3.4
+          helmRepository: https://charts.crossplane.io/stable
+      - name: image-crossplane
+        version: v2.3.4
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=xpkg.crossplane.io/crossplane/crossplane
+          imageReference: xpkg.crossplane.io/crossplane/crossplane:v2.3.4
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane
+    version: v2.2.4
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: crossplane
+        version: v2.2.4
+        type: helmChart
+        access:
+          type: helm
+          helmChart: crossplane:2.2.4
+          helmRepository: https://charts.crossplane.io/stable
+      - name: image-crossplane
+        version: v2.2.4
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: xpkg.crossplane.io/crossplane/crossplane:v2.2.4

@@ -1,0 +1,26 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/kro
+    version: v0.9.3
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: kro
+        version: v0.9.3
+        type: helmChart
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=registry.k8s.io/kro/charts/kro versioning=loose
+          imageReference: registry.k8s.io/kro/charts/kro:0.9.3
+  - name: ${OCM_COMPONENT_PREFIX}/kro
+    version: v0.8.5
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: kro
+        version: v0.8.5
+        type: helmChart
+        access:
+          type: ociArtifact
+          imageReference: registry.k8s.io/kro/charts/kro:0.8.5

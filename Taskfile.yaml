@@ -1,0 +1,66 @@
+version: "3"
+
+vars:
+  OCM_COMPONENT_PREFIX: "github.com/openmcp-project/releasechannel"
+  OCM_COMPONENT_PROVIDER: "openmcp-project"
+  RELEASECHANNEL_COMPONENT_NAME: "{{.OCM_COMPONENT_PREFIX}}"
+  REPO_URL: "github.com/openmcp-project/releasechannel-public"
+  VERSION:
+    sh: "cat VERSION"
+  COMMIT:
+    sh: '( cd "{{.ROOT_DIR}}"; git rev-parse HEAD 2>/dev/null || echo "unknown" )'
+
+  OCM_TARGET_REPO: '{{.OCM_TARGET_REPO | default "ghcr.io/openmcp-project/ocm"}}'
+
+  COMPONENTS_DIR: "{{.ROOT_DIR}}/components"
+  OCM_OUTPUT_DIR: "{{.ROOT_DIR}}/.ctf"
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  build:
+    desc: Build OCM transport archive from component descriptors
+    env:
+      OCM_COMPONENT_PREFIX: "{{.OCM_COMPONENT_PREFIX}}"
+      RELEASECHANNEL_COMPONENT_NAME: "{{.RELEASECHANNEL_COMPONENT_NAME}}"
+      VERSION: "{{.VERSION}}"
+      PROVIDER: "{{.OCM_COMPONENT_PROVIDER}}"
+      REPO_URL: "{{.REPO_URL}}"
+    cmds:
+      - |
+        for f in {{.COMPONENTS_DIR}}/*.yaml; do
+          [ "$(basename "$f")" = "releasechannel.yaml" ] && continue
+          ocm add component-version \
+            --repository "CTF::{{.OCM_OUTPUT_DIR}}" \
+            --constructor "$f" \
+            --component-version-conflict-policy replace
+        done
+      - |
+        ocm add component-version \
+          --repository "CTF::{{.OCM_OUTPUT_DIR}}" \
+          --constructor {{.COMPONENTS_DIR}}/releasechannel.yaml \
+          --component-version-conflict-policy replace
+
+  ocm:publish:
+    desc: Publish OCM components to the target OCI registry
+    cmds:
+      - |
+        ocm transfer component-version \
+          --copy-resources \
+          --upload-as ociArtifact \
+          --recursive \
+          "CTF::{{.OCM_OUTPUT_DIR}}//{{.OCM_COMPONENT_PREFIX}}:{{.VERSION}}" \
+          {{.OCM_TARGET_REPO}}
+
+  ocm:inspect:
+    desc: Show what was built
+    cmds:
+      - ocm get components --recursive -o tree "CTF::{{.OCM_OUTPUT_DIR}}"//{{.OCM_COMPONENT_PREFIX}}
+
+  clean:
+    desc: Remove build artifacts
+    cmds:
+      - rm -rf {{.OCM_OUTPUT_DIR}}

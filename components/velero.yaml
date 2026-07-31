@@ -1,0 +1,41 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/velero
+    version: v12.0.0
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: velero
+        version: v12.0.0
+        type: helmChart
+        access:
+          type: helm
+          # renovate: datasource=helm depName=velero registryUrl=https://vmware-tanzu.github.io/helm-charts
+          helmChart: velero:12.0.0
+          helmRepository: https://vmware-tanzu.github.io/helm-charts
+      - name: image-velero
+        version: v1.18.0
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=docker.io/velero/velero
+          imageReference: docker.io/velero/velero:v1.18.0
+  - name: ${OCM_COMPONENT_PREFIX}/velero
+    version: v11.4.0
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: velero
+        version: v11.4.0
+        type: helmChart
+        access:
+          type: helm
+          helmChart: velero:11.4.0
+          helmRepository: https://vmware-tanzu.github.io/helm-charts
+      - name: image-velero
+        version: v1.17.1
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: docker.io/velero/velero:v1.17.1

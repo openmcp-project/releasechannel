@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "OCM component helm chart versions",
+      "fileMatch": ["^components/.+\\.yaml$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[^ ]+) depName=(?<depName>[^ ]+)( registryUrl=(?<registryUrl>[^\\s]+))?( versioning=(?<versioning>[^\\s]+))?\\n\\s+helmChart: [^:]+:(?<currentValue>[^\\s]+)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    },
+    {
+      "customType": "regex",
+      "description": "OCM component container image versions",
+      "fileMatch": ["^components/.+\\.yaml$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[^ ]+) depName=(?<depName>[^ ]+)( versioning=(?<versioning>[^\\s]+))?\\n\\s+imageReference: [^:]+:(?<currentValue>[^\\s]+)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Group updates per component into one PR",
+      "matchFileNames": ["components/**"],
+      "groupName": "ocm-components"
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "bash scripts/shift-versions.sh {{{packageFile}}} {{{currentVersion}}} {{{newVersion}}}"
+    ],
+    "fileFilters": ["components/**"],
+    "executionMode": "update"
+  }
+}

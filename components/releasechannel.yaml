@@ -1,0 +1,81 @@
+components:
+  - name: ${RELEASECHANNEL_COMPONENT_NAME}
+    version: ${VERSION}
+    labels:
+      - name: org.opencontainers.image.source
+        value: ${REPO_URL}
+    provider:
+      name: ${PROVIDER}
+    componentReferences:
+      # Crossplane
+      - name: crossplane
+        version: v2.3.4
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane
+      - name: crossplane
+        version: v2.2.4
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane
+      - name: provider-kubernetes
+        version: v1.2.1
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/provider-kubernetes
+      - name: provider-kubernetes
+        version: v0.18.0
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/provider-kubernetes
+      - name: provider-helm
+        version: v1.3.0
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/provider-helm
+      - name: provider-helm
+        version: v0.21.0
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/provider-helm
+      - name: function-auto-ready
+        version: v0.7.0
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/function-auto-ready
+      - name: function-auto-ready
+        version: v0.6.7
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/function-auto-ready
+      - name: function-patch-and-transform
+        version: v0.10.8
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/function-patch-and-transform
+      - name: function-patch-and-transform
+        version: v0.9.3
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/function-patch-and-transform
+      - name: function-go-templating
+        version: v0.12.3
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/function-go-templating
+      - name: function-go-templating
+        version: v0.11.9
+        componentName: ${OCM_COMPONENT_PREFIX}/crossplane/function-go-templating
+      # External Secrets Operator
+      - name: external-secrets-operator
+        version: v2.4.1
+        componentName: ${OCM_COMPONENT_PREFIX}/external-secrets-operator
+      - name: external-secrets-operator
+        version: v1.3.2
+        componentName: ${OCM_COMPONENT_PREFIX}/external-secrets-operator
+      # Flux
+      - name: flux
+        version: v2.19.0
+        componentName: ${OCM_COMPONENT_PREFIX}/flux
+      - name: flux
+        version: v2.18.4
+        componentName: ${OCM_COMPONENT_PREFIX}/flux
+      # kro
+      - name: kro
+        version: v0.9.3
+        componentName: ${OCM_COMPONENT_PREFIX}/kro
+      - name: kro
+        version: v0.8.5
+        componentName: ${OCM_COMPONENT_PREFIX}/kro
+      # Kyverno
+      - name: kyverno
+        version: v3.8.2
+        componentName: ${OCM_COMPONENT_PREFIX}/kyverno
+      - name: kyverno
+        version: v3.7.2
+        componentName: ${OCM_COMPONENT_PREFIX}/kyverno
+      # Velero
+      - name: velero
+        version: v12.0.0
+        componentName: ${OCM_COMPONENT_PREFIX}/velero
+      - name: velero
+        version: v11.4.0
+        componentName: ${OCM_COMPONENT_PREFIX}/velero

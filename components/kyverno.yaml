@@ -1,0 +1,41 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/kyverno
+    version: v3.8.2
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: kyverno
+        version: v3.8.2
+        type: helmChart
+        access:
+          type: helm
+          # renovate: datasource=helm depName=kyverno registryUrl=https://kyverno.github.io/kyverno/
+          helmChart: kyverno:3.8.2
+          helmRepository: https://kyverno.github.io/kyverno/
+      - name: image-kyverno
+        version: v1.18.2
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=ghcr.io/kyverno/kyverno
+          imageReference: ghcr.io/kyverno/kyverno:v1.18.2
+  - name: ${OCM_COMPONENT_PREFIX}/kyverno
+    version: v3.7.2
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: kyverno
+        version: v3.7.2
+        type: helmChart
+        access:
+          type: helm
+          helmChart: kyverno:3.7.2
+          helmRepository: https://kyverno.github.io/kyverno/
+      - name: image-kyverno
+        version: v1.17.2
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: ghcr.io/kyverno/kyverno:v1.17.2

@@ -1,0 +1,30 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/provider-kubernetes
+    version: v1.2.1
+    labels:
+      - name: crossplane.io/type
+        value: "provider"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: provider-kubernetes
+        version: v1.2.1
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=xpkg.upbound.io/crossplane-contrib/provider-kubernetes
+          imageReference: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v1.2.1
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/provider-kubernetes
+    version: v0.18.0
+    labels:
+      - name: crossplane.io/type
+        value: "provider"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: provider-kubernetes
+        version: v0.18.0
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.18.0

@@ -1,0 +1,28 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/flux
+    version: v2.19.0
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: flux2
+        version: v2.19.0
+        type: helmChart
+        access:
+          type: helm
+          # renovate: datasource=helm depName=flux2 registryUrl=https://fluxcd-community.github.io/helm-charts
+          helmChart: flux2:2.19.0
+          helmRepository: https://fluxcd-community.github.io/helm-charts
+  - name: ${OCM_COMPONENT_PREFIX}/flux
+    version: v2.18.4
+    labels: []
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: flux2
+        version: v2.18.4
+        type: helmChart
+        access:
+          type: helm
+          helmChart: flux2:2.18.4
+          helmRepository: https://fluxcd-community.github.io/helm-charts

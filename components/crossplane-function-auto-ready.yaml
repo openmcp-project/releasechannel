@@ -1,0 +1,30 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-auto-ready
+    version: v0.7.0
+    labels:
+      - name: crossplane.io/type
+        value: "function"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: function-auto-ready
+        version: v0.7.0
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=xpkg.upbound.io/crossplane-contrib/function-auto-ready
+          imageReference: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.7.0
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-auto-ready
+    version: v0.6.7
+    labels:
+      - name: crossplane.io/type
+        value: "function"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: function-auto-ready
+        version: v0.6.7
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.6.7

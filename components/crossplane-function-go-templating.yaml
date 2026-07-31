@@ -1,0 +1,30 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-go-templating
+    version: v0.12.3
+    labels:
+      - name: crossplane.io/type
+        value: "function"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: function-go-templating
+        version: v0.12.3
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=xpkg.upbound.io/crossplane-contrib/function-go-templating
+          imageReference: xpkg.upbound.io/crossplane-contrib/function-go-templating:v0.12.3
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-go-templating
+    version: v0.11.9
+    labels:
+      - name: crossplane.io/type
+        value: "function"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: function-go-templating
+        version: v0.11.9
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: xpkg.upbound.io/crossplane-contrib/function-go-templating:v0.11.9

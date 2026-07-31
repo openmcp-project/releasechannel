@@ -1,0 +1,30 @@
+components:
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-patch-and-transform
+    version: v0.10.8
+    labels:
+      - name: crossplane.io/type
+        value: "function"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: function-patch-and-transform
+        version: v0.10.8
+        type: ociImage
+        access:
+          type: ociArtifact
+          # renovate: datasource=docker depName=xpkg.upbound.io/crossplane-contrib/function-patch-and-transform
+          imageReference: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.10.8
+  - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-patch-and-transform
+    version: v0.9.3
+    labels:
+      - name: crossplane.io/type
+        value: "function"
+    provider:
+      name: ${PROVIDER}
+    resources:
+      - name: function-patch-and-transform
+        version: v0.9.3
+        type: ociImage
+        access:
+          type: ociArtifact
+          imageReference: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.9.3
