@@ -21,4 +21,8 @@ jobs:
         run: task build
 
       - name: Inspect
-        run: task ocm:inspect
+        run: |
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          task ocm:inspect >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          task ocm:inspect

@@ -63,6 +63,9 @@ jobs:
             task ocm:inspect
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          task ocm:inspect >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Login to GHCR
         uses: docker/login-action@v3
