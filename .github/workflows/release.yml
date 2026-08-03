@@ -91,5 +91,5 @@ jobs:
             ```
 
             ### OCM Target Repository:
-            - ghcr.io/openmcp-project/ocm
+            - ghcr.io/openmcp-project/components
           generate_release_notes: true
