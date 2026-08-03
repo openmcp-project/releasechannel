@@ -10,7 +10,7 @@ vars:
   COMMIT:
     sh: '( cd "{{.ROOT_DIR}}"; git rev-parse HEAD 2>/dev/null || echo "unknown" )'
 
-  OCM_TARGET_REPO: '{{.OCM_TARGET_REPO | default "ghcr.io/openmcp-project/ocm"}}'
+  OCM_TARGET_REPO: '{{.OCM_TARGET_REPO | default "ghcr.io/openmcp-project/components"}}'
 
   COMPONENTS_DIR: "{{.ROOT_DIR}}/components"
   OCM_OUTPUT_DIR: "{{.ROOT_DIR}}/.ctf"
