@@ -4,7 +4,7 @@ vars:
   OCM_COMPONENT_PREFIX: "github.com/openmcp-project/releasechannel"
   OCM_COMPONENT_PROVIDER: "openmcp-project"
   RELEASECHANNEL_COMPONENT_NAME: "{{.OCM_COMPONENT_PREFIX}}"
-  REPO_URL: "github.com/openmcp-project/releasechannel-public"
+  REPO_URL: "github.com/openmcp-project/releasechannel"
   VERSION:
     sh: "cat VERSION"
   COMMIT:
