@@ -83,8 +83,13 @@ jobs:
           tag_name: ${{ needs.tag.outputs.version }}
           name: ${{ needs.tag.outputs.version }}
           body: |
-            ## OCM Component Tree
+            ## Build Summary for ${{ needs.tag.outputs.version }}
 
-            ```
+            ### Components Built:
+            ```txt
             ${{ steps.inspect.outputs.tree }}
             ```
+
+            ### OCM Target Repository:
+            - ghcr.io/openmcp-project/ocm
+          generate_release_notes: true
