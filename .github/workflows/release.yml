@@ -47,7 +47,7 @@ jobs:
           ref: ${{ needs.tag.outputs.version }}
 
       - name: Install ocm CLI
-        uses: open-component-model/ocm-setup-action@main
+        run: curl -sfL https://ocm.software/install-cli.sh | bash
 
       - name: Install Task
         uses: arduino/setup-task@v2
