@@ -1,7 +1,9 @@
 components:
   - name: ${OCM_COMPONENT_PREFIX}/kyverno
     version: v3.8.2
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:
@@ -22,7 +24,9 @@ components:
           imageReference: ghcr.io/kyverno/kyverno:v1.18.2
   - name: ${OCM_COMPONENT_PREFIX}/kyverno
     version: v3.7.2
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:

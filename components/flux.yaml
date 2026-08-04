@@ -1,7 +1,9 @@
 components:
   - name: ${OCM_COMPONENT_PREFIX}/flux
     version: v2.19.0
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:
@@ -15,7 +17,9 @@ components:
           helmRepository: https://fluxcd-community.github.io/helm-charts
   - name: ${OCM_COMPONENT_PREFIX}/flux
     version: v2.18.4
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:

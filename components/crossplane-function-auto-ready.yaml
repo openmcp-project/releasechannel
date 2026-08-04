@@ -2,6 +2,8 @@ components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-auto-ready
     version: v0.7.0
     labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
       - name: crossplane.io/type
         value: "function"
     provider:
@@ -17,6 +19,8 @@ components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-auto-ready
     version: v0.6.7
     labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
       - name: crossplane.io/type
         value: "function"
     provider:

@@ -1,7 +1,9 @@
 components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane
     version: v2.3.4
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:
@@ -22,7 +24,9 @@ components:
           imageReference: xpkg.crossplane.io/crossplane/crossplane:v2.3.4
   - name: ${OCM_COMPONENT_PREFIX}/crossplane
     version: v2.2.4
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:

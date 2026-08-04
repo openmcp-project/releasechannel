@@ -2,6 +2,8 @@ components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-go-templating
     version: v0.12.3
     labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
       - name: crossplane.io/type
         value: "function"
     provider:
@@ -17,6 +19,8 @@ components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-go-templating
     version: v0.11.9
     labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
       - name: crossplane.io/type
         value: "function"
     provider:

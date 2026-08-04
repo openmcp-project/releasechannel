@@ -145,6 +145,30 @@ components:
 
 Edit the version in the component file directly, update the reference in `releasechannel.yaml`, and bump `VERSION`. No code generation needed — the descriptors are the source of truth.
 
+## GHCR Package Permissions (GitHub Actions caveat)
+
+The CI release workflow uses the `GITHUB_TOKEN` with `packages: write` to push OCM components to `ghcr.io/openmcp-project/components`. This token can only write to packages that are **linked to the `releasechannel` repository**.
+
+When adding a new component, the corresponding GHCR packages don't exist yet — the `GITHUB_TOKEN` cannot create them. You must bootstrap them manually:
+
+1. **Push locally first:**
+   ```bash
+   task clean
+   task build
+   task ocm:publish
+   ```
+   This creates the new packages under the org (requires your user to have push access to `ghcr.io/openmcp-project`).
+
+2. **Link packages to the repo:**  
+   Go to each new package's settings page:  
+   `https://github.com/orgs/openmcp-project/packages/container/<url-encoded-package-name>/settings`  
+   → **Manage Access** → **Add Repository** → `releasechannel` → **Write**
+
+3. **Make packages public:**  
+   On the same settings page → **Danger Zone** → **Change visibility** → **Public**
+
+After this, the GitHub Actions `GITHUB_TOKEN` can push to these packages on subsequent releases.
+
 ## License
 
 Apache-2.0

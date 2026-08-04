@@ -2,6 +2,8 @@ components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/provider-helm
     version: v1.3.0
     labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
       - name: crossplane.io/type
         value: "provider"
     provider:
@@ -17,6 +19,8 @@ components:
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/provider-helm
     version: v0.21.0
     labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
       - name: crossplane.io/type
         value: "provider"
     provider:

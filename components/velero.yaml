@@ -1,7 +1,9 @@
 components:
   - name: ${OCM_COMPONENT_PREFIX}/velero
     version: v12.0.0
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:
@@ -22,7 +24,9 @@ components:
           imageReference: docker.io/velero/velero:v1.18.0
   - name: ${OCM_COMPONENT_PREFIX}/velero
     version: v11.4.0
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:

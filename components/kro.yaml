@@ -1,7 +1,9 @@
 components:
   - name: ${OCM_COMPONENT_PREFIX}/kro
     version: v0.9.3
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:
@@ -14,7 +16,9 @@ components:
           imageReference: registry.k8s.io/kro/charts/kro:0.9.3
   - name: ${OCM_COMPONENT_PREFIX}/kro
     version: v0.8.5
-    labels: []
+    labels:
+      - name: org.opencontainers.image.source
+        value: "https://github.com/openmcp-project/releasechannel"
     provider:
       name: ${PROVIDER}
     resources:
