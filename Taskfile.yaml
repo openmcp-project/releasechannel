@@ -11,6 +11,7 @@ vars:
     sh: '( cd "{{.ROOT_DIR}}"; git rev-parse HEAD 2>/dev/null || echo "unknown" )'
 
   OCM_TARGET_REPO: '{{.OCM_TARGET_REPO | default "ghcr.io/openmcp-project/components"}}'
+  OCM_CONFIG: '{{.OCM_CONFIG | default ""}}'
 
   COMPONENTS_DIR: "{{.ROOT_DIR}}/components"
   OCM_OUTPUT_DIR: "{{.ROOT_DIR}}/.ctf"
@@ -49,6 +50,7 @@ tasks:
     cmds:
       - |
         ocm transfer component-version \
+          {{if .OCM_CONFIG}}--config "{{.OCM_CONFIG}}" \{{end}}
           --copy-resources \
           --upload-as ociArtifact \
           --recursive \

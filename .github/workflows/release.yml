@@ -91,7 +91,7 @@ jobs:
           EOF
 
       - name: Publish
-        run: task ocm:publish
+        run: task ocm:publish OCM_CONFIG="$HOME/.ocmconfig"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
