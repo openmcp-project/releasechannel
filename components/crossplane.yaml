@@ -20,8 +20,8 @@ components:
         type: ociImage
         access:
           type: ociArtifact
-          # renovate: datasource=docker depName=xpkg.crossplane.io/crossplane/crossplane
-          imageReference: xpkg.crossplane.io/crossplane/crossplane:v2.3.4
+          # renovate: datasource=docker depName=docker.io/crossplane/crossplane
+          imageReference: docker.io/crossplane/crossplane:v2.3.4
   - name: ${OCM_COMPONENT_PREFIX}/crossplane
     version: v2.2.4
     labels:
@@ -42,4 +42,4 @@ components:
         type: ociImage
         access:
           type: ociArtifact
-          imageReference: xpkg.crossplane.io/crossplane/crossplane:v2.2.4
+          imageReference: docker.io/crossplane/crossplane:v2.2.4
