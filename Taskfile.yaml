@@ -52,7 +52,7 @@ tasks:
         ocm transfer component-version \
           {{if .OCM_CONFIG}}--config "{{.OCM_CONFIG}}" \{{end}}
           --copy-resources \
-          --upload-as ociArtifact \
+          --upload-as localBlob \
           --recursive \
           "CTF::{{.OCM_OUTPUT_DIR}}//{{.OCM_COMPONENT_PREFIX}}:{{.VERSION}}" \
           {{.OCM_TARGET_REPO}}

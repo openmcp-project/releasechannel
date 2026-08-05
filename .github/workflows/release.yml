@@ -78,15 +78,19 @@ jobs:
       - name: Write OCM config
         run: |
           set -euo pipefail
-          # Path is the in-container mount target, not the runner path.
-          cat > "$HOME/.ocmconfig" <<'EOF'
+          cat > "$HOME/.ocmconfig" <<EOF
           type: generic.config.ocm.software/v1
           configurations:
+            - type: http.config.ocm.software/v1alpha1
+              timeout: 10m
+              retry:
+                maxRetries: 3
+                maxWait: 10s
             - type: credentials.config.ocm.software
               repositories:
                 - repository:
                     type: DockerConfig/v1
-                    dockerConfigFile: /.docker/config.json
+                    dockerConfigFile: $HOME/.docker/config.json
                     propagateConsumerIdentity: true
           EOF
 
