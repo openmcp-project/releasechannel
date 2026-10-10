@@ -7,8 +7,8 @@
     {
       "customType": "regex",
       "description": "OCM component helm chart versions",
-      "fileMatch": [
-        "^components/.+\\.yaml$"
+      "managerFilePatterns": [
+        "/^components/.+\\.yaml$/"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[^ ]+) depName=(?<depName>[^ ]+)( registryUrl=(?<registryUrl>[^\\s]+))?( versioning=(?<versioning>[^\\s]+))?\\n\\s+helmChart: [^:]+:(?<currentValue>[^\\s]+)"
@@ -18,8 +18,8 @@
     {
       "customType": "regex",
       "description": "OCM component container image versions",
-      "fileMatch": [
-        "^components/.+\\.yaml$"
+      "managerFilePatterns": [
+        "/^components/.+\\.yaml$/"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[^ ]+) depName=(?<depName>[^ ]+)( versioning=(?<versioning>[^\\s]+))?\\n\\s+imageReference: [^:]+:(?<currentValue>[^\\s]+)"
