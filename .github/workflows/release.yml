@@ -17,7 +17,7 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       created: ${{ steps.create-tag.outputs.created }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
 
@@ -43,7 +43,7 @@ jobs:
     needs: tag
     if: needs.tag.outputs.created == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ needs.tag.outputs.version }}
 
