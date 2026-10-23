@@ -21,7 +21,7 @@ components:
         access:
           type: ociArtifact
           # renovate: datasource=docker depName=docker.io/crossplane/crossplane
-          imageReference: docker.io/crossplane/crossplane:v2.3.4
+          imageReference: docker.io/crossplane/crossplane:v2.4.2
   - name: ${OCM_COMPONENT_PREFIX}/crossplane
     version: v2.2.4
     labels:
