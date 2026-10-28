@@ -13,7 +13,7 @@ components:
         access:
           type: helm
           # renovate: datasource=helm depName=kyverno registryUrl=https://kyverno.github.io/kyverno/
-          helmChart: kyverno:3.8.2
+          helmChart: kyverno:3.9.2
           helmRepository: https://kyverno.github.io/kyverno/
       - name: image-kyverno
         version: v1.18.2
