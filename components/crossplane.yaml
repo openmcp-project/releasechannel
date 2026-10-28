@@ -13,7 +13,7 @@ components:
         access:
           type: helm
           # renovate: datasource=helm depName=crossplane registryUrl=https://charts.crossplane.io/stable
-          helmChart: crossplane:2.3.4
+          helmChart: crossplane:2.4.3
           helmRepository: https://charts.crossplane.io/stable
       - name: image-crossplane
         version: v2.3.4
@@ -21,7 +21,7 @@ components:
         access:
           type: ociArtifact
           # renovate: datasource=docker depName=docker.io/crossplane/crossplane
-          imageReference: docker.io/crossplane/crossplane:v2.3.4
+          imageReference: docker.io/crossplane/crossplane:v2.4.3
   - name: ${OCM_COMPONENT_PREFIX}/crossplane
     version: v2.2.4
     labels:
