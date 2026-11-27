@@ -15,6 +15,7 @@ vars:
 
   COMPONENTS_DIR: "{{.ROOT_DIR}}/components"
   OCM_OUTPUT_DIR: "{{.ROOT_DIR}}/.ctf"
+  OCM_SIGNING_CONFIG: "{{.ROOT_DIR}}/signing.yaml"
 
 tasks:
   default:
@@ -44,6 +45,16 @@ tasks:
           --repository "CTF::{{.OCM_OUTPUT_DIR}}" \
           --constructor {{.COMPONENTS_DIR}}/releasechannel.yaml \
           --component-version-conflict-policy replace
+
+  ocm:sign:
+    desc: Sign every OCM component version in the transport archive keyless with Sigstore. It must have been built before.
+    cmds:
+      - |
+        ocm get component-version "CTF::{{.OCM_OUTPUT_DIR}}" -o json |
+          jq -r '.[] | "\(.component.name):\(.component.version)"' |
+          while read -r component; do
+            ocm sign component-version --config "{{.OCM_SIGNING_CONFIG}}" "CTF::{{.OCM_OUTPUT_DIR}}//$component" || exit 1
+          done
 
   ocm:publish:
     desc: Publish OCM components to the target OCI registry. Fails if the releasechannel version exists, unless OVERWRITE_COMPONENTS is "true".

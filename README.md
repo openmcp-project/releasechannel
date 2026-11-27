@@ -25,7 +25,8 @@ Use this as a template for your own platform to declare which versions of infras
 ```
 .
 ├── VERSION                         # Releasechannel version (semver)
-├── Taskfile.yaml                   # Build tasks (requires: task, ocm, yq)
+├── Taskfile.yaml                   # Build tasks (requires: task, ocm, yq, jq)
+├── signing.yaml                    # OCM signing configuration (Sigstore keyless)
 ├── components/
 │   ├── crossplane.yaml             # Crossplane helm chart + image
 │   ├── provider-kubernetes.yaml    # Crossplane provider packages
@@ -81,11 +82,47 @@ This merges all component descriptors and builds an OCM Common Transport Format 
 task ocm:inspect
 ```
 
+### Sign
+
+```bash
+task ocm:sign
+```
+
+This signs every component version in `.ctf/` keyless with [Sigstore](https://www.sigstore.dev/). In CI the release workflow signs with its own identity, locally a browser login is required.
+
 ### Publish to an OCI registry
 
 ```bash
 task ocm:publish
 ```
+
+`task ocm:publish` fails if the releasechannel version already exists in the registry, unless `OVERWRITE_COMPONENTS=true` is set.
+
+## Verifying a Release
+
+The OCM component versions are signed keyless with [Sigstore](https://www.sigstore.dev/) by the release workflow.
+
+Verify a component version with the [OCM CLI](https://ocm.software). The expected signer goes into an OCM configuration file:
+
+```yaml
+# verify.yaml
+type: generic.config.ocm.software/v1
+configurations:
+  - type: signing.config.ocm.software/v1alpha1
+    signature: default
+    verifier:
+      type: SigstoreVerificationConfiguration/v1alpha1
+      certificateIdentity: https://github.com/openmcp-project/releasechannel/.github/workflows/release.yml@refs/heads/main
+      certificateOIDCIssuer: https://token.actions.githubusercontent.com
+```
+
+```bash
+ocm verify cv --config verify.yaml ghcr.io/openmcp-project/components//github.com/openmcp-project/releasechannel:<version>
+```
+
+The command fails if the component version is unsigned or was signed by anything other than that workflow on the `main` branch.
+
+The referenced component versions are signed the same way, replace the component name and version to verify one of them.
 
 ### Clean
 
