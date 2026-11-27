@@ -13,7 +13,7 @@ components:
         version: v1.3.0
         type: ociImage
         access:
-          type: ociArtifact
+          type: OCIImage/v1
           # renovate: datasource=docker depName=xpkg.upbound.io/crossplane-contrib/provider-helm
           imageReference: xpkg.upbound.io/crossplane-contrib/provider-helm:v1.3.0
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/provider-helm
@@ -30,5 +30,5 @@ components:
         version: v0.21.0
         type: ociImage
         access:
-          type: ociArtifact
+          type: OCIImage/v1
           imageReference: xpkg.upbound.io/crossplane-contrib/provider-helm:v0.21.0

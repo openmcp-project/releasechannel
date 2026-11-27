@@ -13,7 +13,7 @@ components:
         version: v0.10.8
         type: ociImage
         access:
-          type: ociArtifact
+          type: OCIImage/v1
           # renovate: datasource=docker depName=xpkg.upbound.io/crossplane-contrib/function-patch-and-transform
           imageReference: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.10.8
   - name: ${OCM_COMPONENT_PREFIX}/crossplane/function-patch-and-transform
@@ -30,5 +30,5 @@ components:
         version: v0.9.3
         type: ociImage
         access:
-          type: ociArtifact
+          type: OCIImage/v1
           imageReference: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.9.3
