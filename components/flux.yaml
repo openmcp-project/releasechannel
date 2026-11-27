@@ -11,7 +11,7 @@ components:
         version: v2.19.0
         type: helmChart
         access:
-          type: helm
+          type: Helm/v1
           # renovate: datasource=helm depName=flux2 registryUrl=https://fluxcd-community.github.io/helm-charts
           helmChart: flux2:2.19.0
           helmRepository: https://fluxcd-community.github.io/helm-charts
@@ -27,6 +27,6 @@ components:
         version: v2.18.4
         type: helmChart
         access:
-          type: helm
+          type: Helm/v1
           helmChart: flux2:2.18.4
           helmRepository: https://fluxcd-community.github.io/helm-charts
