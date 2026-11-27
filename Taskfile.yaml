@@ -46,8 +46,19 @@ tasks:
           --component-version-conflict-policy replace
 
   ocm:publish:
-    desc: Publish OCM components to the target OCI registry
+    desc: Publish OCM components to the target OCI registry. Fails if the releasechannel version exists, unless OVERWRITE_COMPONENTS is "true".
+    env:
+      OCM_TARGET_REF: "{{.OCM_TARGET_REPO}}//{{.OCM_COMPONENT_PREFIX}}:{{.VERSION}}"
     cmds:
+      # ocm replaces existing versions and has no flag to prevent it.
+      - |
+        if [ "${OVERWRITE_COMPONENTS:-false}" = "true" ]; then
+          exit 0
+        fi
+        if ocm get component-version {{if .OCM_CONFIG}}--config "{{.OCM_CONFIG}}"{{end}} "$OCM_TARGET_REF"; then
+          echo "$OCM_TARGET_REF already exists. Set OVERWRITE_COMPONENTS to 'true' to overwrite it." >&2
+          exit 1
+        fi
       - |
         ocm transfer component-version \
           {{if .OCM_CONFIG}}--config "{{.OCM_CONFIG}}" \{{end}}
